@@ -712,7 +712,7 @@ const SwipeCards = ({ cards = [] }) => {
                                         <div className="revealed-message">
                                             <div className="message-emoji">🎊</div>
                                             <h3 className="message-title">
-                                                Make a Wish!
+                                                You’re the real dessert tonight.!
                                             </h3>
                                             <p className="message-subtitle">🎂✨🎉</p>
                                         </div>
