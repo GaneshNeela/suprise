@@ -21,6 +21,7 @@ const SwipeCards = ({ cards = [] }) => {
   const [knifeY, setKnifeY] = useState(0);
   const [cutProgress, setCutProgress] = useState(0);
   const [sparkles, setSparkles] = useState([]);
+  const [birthdayPoppers, setBirthdayPoppers] = useState([]);
   const [isCardDragging, setIsCardDragging] = useState(false);
   const startY = useRef(0);
   const cardRef = useRef(null);    // Default cards if none provided
@@ -376,7 +377,43 @@ const SwipeCards = ({ cards = [] }) => {
             }));
             setSparkles(newSparkles);
             
-            setTimeout(() => setSparkles([]), 3000);
+            // Create birthday poppers from left and right sides
+            const newPoppers = [];
+            
+            // Left side poppers
+            for (let i = 0; i < 15; i++) {
+                newPoppers.push({
+                    id: `left-${i}`,
+                    side: 'left',
+                    emoji: ['🎉', '🎊', '✨', '🎁', '🎈', '🥳'][Math.floor(Math.random() * 6)],
+                    left: Math.random() * 20 + '%', // 0-20% from left
+                    top: Math.random() * 80 + 10 + '%', // 10-90% from top
+                    delay: Math.random() * 1 + 's',
+                    duration: Math.random() * 2 + 3 + 's', // 3-5 seconds
+                    size: Math.random() * 20 + 25 + 'px' // 25-45px
+                });
+            }
+            
+            // Right side poppers
+            for (let i = 0; i < 15; i++) {
+                newPoppers.push({
+                    id: `right-${i}`,
+                    side: 'right',
+                    emoji: ['🎉', '🎊', '✨', '🎁', '🎈', '🥳'][Math.floor(Math.random() * 6)],
+                    left: Math.random() * 20 + 80 + '%', // 80-100% from left
+                    top: Math.random() * 80 + 10 + '%', // 10-90% from top
+                    delay: Math.random() * 1 + 's',
+                    duration: Math.random() * 2 + 3 + 's', // 3-5 seconds
+                    size: Math.random() * 20 + 25 + 'px' // 25-45px
+                });
+            }
+            
+            setBirthdayPoppers(newPoppers);
+            
+            setTimeout(() => {
+                setSparkles([]);
+                setBirthdayPoppers([]);
+            }, 5000); // Clear after 5 seconds
         } else {
             // Reset if not cut enough
             setKnifeY(0);
@@ -509,6 +546,26 @@ const SwipeCards = ({ cards = [] }) => {
                                         }}
                                     >
                                         ✨
+                                    </div>
+                                ))}
+
+                                {/* Birthday Poppers */}
+                                {birthdayPoppers.map((popper) => (
+                                    <div
+                                        key={popper.id}
+                                        className={`birthday-popper ${popper.side}`}
+                                        style={{
+                                            position: 'absolute',
+                                            left: popper.left,
+                                            top: popper.top,
+                                            fontSize: popper.size,
+                                            animationDelay: popper.delay,
+                                            animationDuration: popper.duration,
+                                            pointerEvents: 'none',
+                                            zIndex: 1001
+                                        }}
+                                    >
+                                        {popper.emoji}
                                     </div>
                                 ))}
 

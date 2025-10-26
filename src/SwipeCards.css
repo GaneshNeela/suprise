@@ -535,6 +535,66 @@
   }
 }
 
+/* Birthday Poppers */
+.birthday-popper {
+  position: absolute;
+  animation: popper-burst 4s ease-out forwards;
+  pointer-events: none;
+  z-index: 1001;
+}
+
+.birthday-popper.left {
+  animation: popper-burst-left 4s ease-out forwards;
+}
+
+.birthday-popper.right {
+  animation: popper-burst-right 4s ease-out forwards;
+}
+
+@keyframes popper-burst-left {
+  0% {
+    opacity: 0;
+    transform: scale(0) translateX(-100px) rotate(-180deg);
+  }
+  10% {
+    opacity: 1;
+    transform: scale(1.2) translateX(50px) rotate(-90deg);
+  }
+  30% {
+    transform: scale(1) translateX(80px) rotate(0deg);
+  }
+  70% {
+    opacity: 1;
+    transform: scale(1.1) translateX(100px) rotate(180deg);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.8) translateX(120px) rotate(360deg);
+  }
+}
+
+@keyframes popper-burst-right {
+  0% {
+    opacity: 0;
+    transform: scale(0) translateX(100px) rotate(180deg);
+  }
+  10% {
+    opacity: 1;
+    transform: scale(1.2) translateX(-50px) rotate(90deg);
+  }
+  30% {
+    transform: scale(1) translateX(-80px) rotate(0deg);
+  }
+  70% {
+    opacity: 1;
+    transform: scale(1.1) translateX(-100px) rotate(-180deg);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.8) translateX(-120px) rotate(-360deg);
+  }
+}
+
 /* Instructions */
 .cutting-instruction-new {
   position: absolute;
