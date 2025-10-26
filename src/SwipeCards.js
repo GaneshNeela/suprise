@@ -64,11 +64,11 @@ const SwipeCards = ({ cards = [] }) => {
         if (currentCardIndex === cardsToShow.length - 1) {
             const timer = setTimeout(() => {
                 setAllowScrolling(true);
-                // Show birthday surprise after 1 second (removed scroll message delay)
+                // Show birthday surprise after 3 seconds (increased from 1 second)
                 setTimeout(() => {
                     setShowBirthdaySurprise(true);
-                }, 1000);
-            }, 1000); // Show birthday surprise 2 seconds after reaching last card
+                }, 3000);
+            }, 2000); // Increased delay to 2 seconds before allowing scrolling
 
             return () => clearTimeout(timer);
         } else {
@@ -120,14 +120,14 @@ const SwipeCards = ({ cards = [] }) => {
     // Handle birthday content timing and cake animation
     useEffect(() => {
         if (showBirthdaySurprise) {
-            // After 4 seconds, start hiding birthday content and show cake
+            // After 8 seconds, start hiding birthday content and show cake (increased from 4 seconds)
             const timer = setTimeout(() => {
                 setHideBirthdayContent(true);
                 // Show cake immediately after content fades out
                 setTimeout(() => {
                     setShowCakeAnimation(true);
                 }, 500); // Wait for fade out animation
-            }, 4000); // Show birthday content for 4 seconds
+            }, 8000); // Show birthday content for 8 seconds (doubled the time)
 
             return () => clearTimeout(timer);
         }
@@ -714,7 +714,7 @@ const SwipeCards = ({ cards = [] }) => {
                                             <h3 className="message-title">
                                                 You’re the real dessert tonight.!
                                             </h3>
-                                            <p className="message-subtitle">🎂✨🎉</p>
+                                            <p className="message-subtitle">😋✨🎉</p>
                                         </div>
                                     )}
                                 </div>
